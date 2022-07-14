@@ -32,7 +32,7 @@ View(df1_tool_1st)
 df1_paper_1st <-  df1[df1$Treament=="paper_1st",]
 View(df1_paper_1st)
 
-wilcox.test(df1_tool_1st$Score_1,df1_paper_1st$Score_1,alternative = "two.sided") #W = 131.5, p-value = 0.04911********
+r=wilcox.test(df1_tool_1st$Score_1,df1_paper_1st$Score_1,alternative = "two.sided") #W = 131.5, p-value = 0.04911********
 wilcox.test(df1_tool_1st$Score_1,df1_paper_1st$Score_1,alternative = "less") #W = 131.5, p-value = 0.9781
 wilcox.test(df1_tool_1st$Score_1,df1_paper_1st$Score_1,alternative = "more") #W = 131.5, p-value = 0.9781
 
@@ -41,7 +41,6 @@ wilcox.test(df1_tool_1st$Score_2,df1_paper_1st$Score_2,alternative = "less") #W 
 wilcox.test(df1_tool_1st$Score_2,df1_paper_1st$Score_2,alternative = "more") #W = 83, p-value = 0.1814
 
 
-wilcox.test(df1_tool_1st$Score_2,df1_paper_1st$Score_2,alternative = "two.sided") #W = 83, p-value = 0.3628
 wilcox.test(df1_tool_1st$Question_1,df1_paper_1st$Question_1,alternative = "two.sided") #W = 98, p-value = 0.6004
 wilcox.test(df1_tool_1st$Question_2,df1_paper_1st$Question_2,alternative = "two.sided") #W = 128.5, p-value = 0.4369
 wilcox.test(df1_tool_1st$Question_3,df1_paper_1st$Question_3,alternative = "two.sided") #W = 137, p-value = 0.2737
