@@ -2,7 +2,7 @@
 
 
 cleanup_df1 <- function(){
-  df1 <-  read.csv("C://Users//Christian//Documents//SVN_Giese//ModelsRobotSimulator//data//dataframe_1.csv")
+  df1 <-  read.csv("C://Users//Christian//Documents//GitHub//HT_WithinBetweenGroups//datadataframe_1.csv")
   #Convert fields do numeric
   cols.num <- colnames(df1)[4:9]
   sapply(df1, class)
@@ -17,7 +17,7 @@ cleanup_df1 <- function(){
 }
 
 cleanup_df2 <- function(){
-  df2 <-  read.csv("C://Users//Christian//Documents//SVN_Giese//ModelsRobotSimulator//data//dataframe_2.csv")
+  df2 <-  read.csv("C://Users//Christian//Documents//GitHub//HT_WithinBetweenGroups//dataframe_2.csv")
   #Convert fields do numeric
   cols.num <- colnames(df2)[4:10]
   sapply(df2, class)
