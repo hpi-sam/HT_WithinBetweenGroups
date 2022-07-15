@@ -1,7 +1,7 @@
 "Correlation analysis of Tutors and satisfaction with the use of the tool"
 
-install.packages("rstatix") #https://rpkgs.datanovia.com/rstatix/reference/wilcox_effsize.html
-install.packages("coin")
+#install.packages("rstatix") #https://rpkgs.datanovia.com/rstatix/reference/wilcox_effsize.html
+#install.packages("coin")
 library(rstatix)
 library(coin)
 
@@ -80,4 +80,8 @@ compute_wilcox_tests <- function(df){
 }
 
 out <- compute_tests(df1)
+
+
+out <- compute_tests(df2)
+
 
