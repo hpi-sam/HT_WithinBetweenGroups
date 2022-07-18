@@ -13,7 +13,6 @@ source("C://Users//Christian//Documents//GitHub//HT_WithinBetweenGroups//hypothe
 
 df1 <- cleanup_df1()
 
-
 tutor_list <- unique(df1$Tutor)[2:5] #removed first tutor as it has only row in the data (only treatment, no control)
 question_list <- colnames(df1[4:9]) #("score_1, score_2,question_1, question_2,question_3, question_4")
 
