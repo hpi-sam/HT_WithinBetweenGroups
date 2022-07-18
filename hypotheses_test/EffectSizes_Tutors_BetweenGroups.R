@@ -1,4 +1,8 @@
-"Correlation analysis of Tutors and satisfaction with the use of the tool"
+"Effect Sizes of Between Groups Analyzes Stratified by Tutors
+ Treatment: Tool-Based task
+ Control: Paper-Based task
+ Outcome Variables: Scores in Tasks 1 and 2, Answers from Questions 1 to 4
+"
 
 #install.packages("rstatix") #https://rpkgs.datanovia.com/rstatix/reference/wilcox_effsize.html
 #install.packages("coin")
@@ -8,7 +12,7 @@ library(coin)
 source("C://Users//Christian//Documents//GitHub//HT_WithinBetweenGroups//hypotheses_test//cleanup.r")
 
 df1 <- cleanup_df1()
-df2 <- cleanup_df2()
+
 
 tutor_list <- unique(df1$Tutor)[2:5] #removed first tutor as it has only row in the data (only treatment, no control)
 question_list <- colnames(df1[4:9]) #("score_1, score_2,question_1, question_2,question_3, question_4")
@@ -82,6 +86,6 @@ compute_wilcox_tests <- function(df){
 out <- compute_tests(df1)
 
 
-out <- compute_tests(df2)
+
 
 
