@@ -27,20 +27,21 @@ source("C://Users//Christian//Documents//GitHub//HT_WithinBetweenGroups//hypothe
 
 df2 <- cleanup_df2()
 
-tutor_list <- unique(df2$Tutor)[2:5] #removed first tutor as it has only row in the data (only treatment, no control)
-question_list <- colnames(df2[4:9]) #("score_1, score_2,question_1, question_2,question_3, question_4")
+
+tutor_list <- unique(df2$Tutor)[3:5] #removed tutor 1 and 2 they do not have enough data for the tests
+question_list <- c("Score_1", "Question_1", "Question_2","Question_3", "Question_4")
 
 "Compute rank sign test and effect sizes"
 compute_wilcox_tests <- function(df){
-
-  p_values <- matrix(data=NA, nrow=4,ncol=length(question_list))
-  effect_size <- matrix(data=NA, nrow=4,ncol=length(question_list))
-  magnitude <- (matrix(data=c("-"), nrow=4,ncol=length(question_list)))
+  df <- df2
+  p_values <- matrix(data=NA, nrow=length(tutor_list),ncol=length(question_list))
+  effect_size <- matrix(data=NA, nrow=length(tutor_list),ncol=length(question_list))
+  magnitude <- (matrix(data=c("-"), nrow=length(tutor_list),ncol=length(question_list)))
   i=0;
   for(tutor in tutor_list){
     i=i+1
     j=1
-    df_tutor <-  df1[df1$Tutor==tutor,]
+    df_tutor <-  df[df$Tutor==tutor,]
     
     p_values[i,j] <- rstatix::wilcox_test(data=df_tutor,Score_1 ~ Treatment, paired=TRUE, alternative = "two.sided")$p
     r <- rstatix::wilcox_effsize(data=df_tutor, Score_1 ~ Treatment, alternative = "two.sided")
@@ -48,11 +49,12 @@ compute_wilcox_tests <- function(df){
     magnitude[i,j] <- levels(r$magnitude)[r$magnitude]
     j <- j+1
     
-    p_values[i,j] <- rstatix::wilcox_test(data=df_tutor, Score_2 ~ Treatment, paired=TRUE, alternative = "two.sided")$p
-    r <- rstatix::wilcox_effsize(data=df_tutor, Score_1 ~ Treatment, alternative = "two.sided")
-    effect_size[i,j]<-r$effsize
-    magnitude[i,j] <- levels(r$magnitude)[r$magnitude]
-    j <- j+1
+    #Skipping Question-2 because it is not comparable and very few datapoints
+    #p_values[i,j] <- rstatix::wilcox_test(data=df_tutor, Score_2 ~ Treatment, paired=TRUE, alternative = "two.sided")$p
+    #r <- rstatix::wilcox_effsize(data=df_tutor, Score_1 ~ Treatment, alternative = "two.sided")
+    #effect_size[i,j]<-r$effsize
+    #magnitude[i,j] <- levels(r$magnitude)[r$magnitude]
+    #j <- j+1
     
     p_values[i,j] <- rstatix::wilcox_test(data=df_tutor, Question_1 ~ Treatment, paired=TRUE, alternative = "two.sided")$p
     r <- rstatix::wilcox_effsize(data=df_tutor, Score_1 ~ Treatment, alternative = "two.sided")
@@ -99,15 +101,21 @@ compute_wilcox_tests <- function(df){
 out <- compute_wilcox_tests(df2)
 
 #P-Values
-#    Score_1 Score_2 Question_1 Question_2 Question_3 Question_4
-#T2  0.1590   0.806      0.711      0.115     0.0987      0.167
-#T3  0.2220   0.282      0.282      1.000     0.4510      0.439
-#T4  0.0765   0.400      1.000      0.554     0.2800      0.629
-#T5  0.0636   0.582      0.696      0.693     0.4710      0.854
+#    Score_1 Question_1 Question_2 Question_3 Question_4
+#T3   1.000      1.000      0.586       1.00      0.346
+#T4   0.346      0.149        NaN       0.50      1.000
+#T5   0.250      0.750      0.500       0.75      1.000
 
 out$effect_sizes
+#      Score_1 Question_1 Question_2 Question_3 Question_4
+#T3 0.09038769 0.09038769 0.09038769 0.09038769 0.09038769
+#T4 0.64549722 0.64549722 0.64549722 0.64549722 0.64549722
+#T5 0.85194275 0.85194275 0.85194275 0.85194275 0.85194275
 
 out$magnitude
-
+#    Score_1 Question_1 Question_2 Question_3 Question_4
+#T3   small      small      small      small      small
+#T4   large      large      large      large      large
+#T5   large      large      large      large      large
 
 
