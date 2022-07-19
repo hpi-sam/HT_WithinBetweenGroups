@@ -35,11 +35,15 @@ df1 <- cleanup_df1()
 tutor_list <- unique(df1$Tutor)[2:5] #removed first tutor as it has only row in the data (only treatment, no control)
 question_list <- colnames(df1[4:9]) #("score_1, score_2,question_1, question_2,question_3, question_4")
 
+tutor=tutor_list[4]
+df_tutor <-  df1[df1$Tutor==tutor,]
+leveneTest(Score_1 ~ Treatment, df_tutor)
 
 
 "Compute rank sign test and effect sizes"
 compute_wilcox_tests <- function(df){
 
+  levene_test_equal_variance <- matrix(data=NA, nrow=4,ncol=length(question_list))
   p_values <- matrix(data=NA, nrow=4,ncol=length(question_list))
   effect_size <- matrix(data=NA, nrow=4,ncol=length(question_list))
   magnitude <- (matrix(data=c("-"), nrow=4,ncol=length(question_list)))
@@ -47,8 +51,9 @@ compute_wilcox_tests <- function(df){
   for(tutor in tutor_list){
     i=i+1
     j=1
-    df_tutor <-  df1[df1$Tutor==tutor,]
-    
+    df_tutor <-  df[df$Tutor==tutor,]
+  
+    leveneTest(Score_1 ~ Treatment, df_tutor)
     p_values[i,j] <- rstatix::wilcox_test(data=df_tutor,Score_1 ~ Treatment, paired=FALSE, alternative = "two.sided")$p
     r <- rstatix::wilcox_effsize(data=df_tutor, Score_1 ~ Treatment, alternative = "two.sided")
     effect_size[i,j]<-r$effsize
