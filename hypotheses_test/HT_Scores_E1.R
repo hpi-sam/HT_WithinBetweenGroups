@@ -1,5 +1,5 @@
 "
-Hypotheses tests on Experiment-1
+Hypotheses tests on Experiment-1, Between Groups
 "
 
 source("C://Users//Christian//Documents//SVN_Giese//ModelsRobotSimulator//hypotheses_test//cleanup.r")
@@ -26,23 +26,16 @@ shapiro.test(df1$Question_4)
 #Hypotheses tests
 
 #Score_1 Tool vs Paper
-df1_tool_1st <-  df1[df1$Treament=="tool_1st",]
+df1_tool_1st <-  df1[df1$Treatment=="tool_1st",]
 View(df1_tool_1st)
 
-df1_paper_1st <-  df1[df1$Treament=="paper_1st",]
+df1_paper_1st <-  df1[df1$Treatment=="paper_1st",]
 View(df1_paper_1st)
 
-r=wilcox.test(df1_tool_1st$Score_1,df1_paper_1st$Score_1,alternative = "two.sided") #W = 131.5, p-value = 0.04911********
-wilcox.test(df1_tool_1st$Score_1,df1_paper_1st$Score_1,alternative = "less") #W = 131.5, p-value = 0.9781
-wilcox.test(df1_tool_1st$Score_1,df1_paper_1st$Score_1,alternative = "more") #W = 131.5, p-value = 0.9781
-
-wilcox.test(df1_tool_1st$Score_2,df1_paper_1st$Score_2,alternative = "two.sided") #W = 83, p-value = 0.3628
-wilcox.test(df1_tool_1st$Score_2,df1_paper_1st$Score_2,alternative = "less") #W = 83, p-value = 0.1814
-wilcox.test(df1_tool_1st$Score_2,df1_paper_1st$Score_2,alternative = "more") #W = 83, p-value = 0.1814
-
-
-wilcox.test(df1_tool_1st$Question_1,df1_paper_1st$Question_1,alternative = "two.sided") #W = 98, p-value = 0.6004
-wilcox.test(df1_tool_1st$Question_2,df1_paper_1st$Question_2,alternative = "two.sided") #W = 128.5, p-value = 0.4369
-wilcox.test(df1_tool_1st$Question_3,df1_paper_1st$Question_3,alternative = "two.sided") #W = 137, p-value = 0.2737
-wilcox.test(df1_tool_1st$Question_4,df1_paper_1st$Question_4,alternative = "two.sided") #W = 128.5, p-value = 0.4558
+wilcox.test(df1_tool_1st$Score_1,df1_paper_1st$Score_1,paired=FALSE,alternative = "two.sided") #W = 131.5, p-value = 0.04911********
+wilcox.test(df1_tool_1st$Score_2,df1_paper_1st$Score_2,paired=FALSE,alternative = "two.sided") #W = 83, p-value = 0.3628
+wilcox.test(df1_tool_1st$Question_1,df1_paper_1st$Question_1,paired=FALSE,alternative = "two.sided") #W = 98, p-value = 0.6004
+wilcox.test(df1_tool_1st$Question_2,df1_paper_1st$Question_2,paired=FALSE,alternative = "two.sided") #W = 128.5, p-value = 0.4369
+wilcox.test(df1_tool_1st$Question_3,df1_paper_1st$Question_3,paired=FALSE,alternative = "two.sided") #W = 137, p-value = 0.2737
+wilcox.test(df1_tool_1st$Question_4,df1_paper_1st$Question_4,paired=FALSE,alternative = "two.sided") #W = 128.5, p-value = 0.4558
 
