@@ -8,8 +8,8 @@ cleanup_task1 <- function(){
   df1[cols.num] <- sapply(df1[cols.num],as.numeric)
   
   #Convert score to percentages of the maximum score
-  df$Score_1 <- (df$Score_1/24 ) *100
-  df$Score_2 <- (df$Score_2/24 ) *100
+  df1$Score_1 <- (df1$Score_1/24 ) *100
+  df1$Score_2 <- (df1$Score_2/24 ) *100
   
   #Remove rows that have score either zero or NA
   df1 <- df1[!(is.na(df1$Score_1) & is.na(df1$Score_2)), ]
@@ -28,8 +28,8 @@ cleanup_task2 <- function(){
   df2[cols.num] <- sapply(df2[cols.num],as.numeric)
   
   #Convert score to percentages of the maximum score
-  df$Score_1 <- (df$Score_1/18 ) *100
-  df$Score_2 <- (df$Score_2/18 ) *100
+  df2$Score_1 <- (df2$Score_1/18 ) *100
+  df2$Score_2 <- (df2$Score_2/18 ) *100
   
   #Remove rows that have score either zero or NA
   df2 <- df2[!( (is.na(df2$Score_1) | df2$Score_1==0) & (is.na(df2$Score_2) | df2$Score_2==0) ), ]
