@@ -17,6 +17,8 @@ cleanup_task1 <- function(){
   #Remove rows that have score for Score
   #df1 <- df1[!(is.na(df1$Score_1) | is.na(df1$Score_2)), ]
   
+  df1$Score_1_Scaled <- scale(df1$Score_1, scale = TRUE)
+  
   return(df1)
 }
 
@@ -38,7 +40,9 @@ cleanup_task2 <- function(){
   #df2 <- df2[!is.na(df2$Score_1), ]
   
   #Discarded Score-2 because it is not comparable with Task-1 (so not valid for within-group comparisons) and has too few data points for a between group comparsion
-  df2 = subset(df2, select = -c(Score_2) )
+  df2 <- subset(df2, select = -c(Score_2) )
+  
+  df2$Score_1_Scaled <- scale(df2$Score_1, scale = TRUE)
   
   #Replace all zeros for NA, so it does not distort the hypotheses tests
   return(df2)
