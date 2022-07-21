@@ -2,9 +2,9 @@
 Hypotheses tests on Experiment-1, Between Groups
 "
 
-source("C://Users//Christian//Documents//SVN_Giese//ModelsRobotSimulator//hypotheses_test//cleanup.r")
+source("C://Users//Christian//Documents//GitHub//HT_WithinBetweenGroups//hypotheses_test//cleanup.r")
 
-df1 <- cleanup_df1()
+df1 <- cleanup_task1()
 #--------------------------------
 # NORMALITY TEST
 shapiro.test(df1$Score_1) 
@@ -32,7 +32,10 @@ View(df1_tool_1st)
 df1_paper_1st <-  df1[df1$Treatment=="paper_1st",]
 View(df1_paper_1st)
 
-wilcox.test(df1_tool_1st$Score_1,df1_paper_1st$Score_1,paired=FALSE,alternative = "two.sided") #W = 131.5, p-value = 0.04911********
+wilcox.test(df1_tool_1st$Score_1,df1_paper_1st$Score_1,paired=FALSE,alternative = "two.sided") #W = 131.5, p-value = 0.04783********
+wilcox.test(df1_tool_1st$Score_1,df1_paper_1st$Score_1,paired=FALSE,alternative = "less") #W = 131.5, p-value = 0.9787
+wilcox.test(df1_tool_1st$Score_1,df1_paper_1st$Score_1,paired=FALSE,alternative = "greater") #W = 131.5, p-value = 0.02392*********
+
 wilcox.test(df1_tool_1st$Score_2,df1_paper_1st$Score_2,paired=FALSE,alternative = "two.sided") #W = 83, p-value = 0.3628
 wilcox.test(df1_tool_1st$Question_1,df1_paper_1st$Question_1,paired=FALSE,alternative = "two.sided") #W = 98, p-value = 0.6004
 wilcox.test(df1_tool_1st$Question_2,df1_paper_1st$Question_2,paired=FALSE,alternative = "two.sided") #W = 128.5, p-value = 0.4369

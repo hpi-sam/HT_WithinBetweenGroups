@@ -25,11 +25,15 @@ library(coin)
 
 source("C://Users//Christian//Documents//GitHub//HT_WithinBetweenGroups//hypotheses_test//cleanup.r")
 
-df2 <- cleanup_df2()
+df2 <- cleanup_task2()
 
 
 tutor_list <- unique(df2$Tutor)[3:5] #removed tutor 1 and 2 they do not have enough data for the tests
 question_list <- c("Score_1", "Question_1", "Question_2","Question_3", "Question_4")
+
+df1_f <- df1[df1$Tutor %in% tutor_list,]
+df2_f <- df2[df2$Tutor %in% tutor_list,]
+
 
 "Compute rank sign test and effect sizes"
 compute_wilcox_tests <- function(df){

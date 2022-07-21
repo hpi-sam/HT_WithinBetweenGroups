@@ -3,8 +3,8 @@ Hypotheses tests on Experiment-2 Between Group, hence independent groups, so usi
 "
 source("C://Users//Christian//Documents//GitHub//HT_WithinBetweenGroups//hypotheses_test//cleanup.r")
 
-df2 <- cleanup_df2()
-dim(df2)
+df2 <- cleanup_task2()
+View(df2)
 
 #--------------------------------
 # NORMALITY TEST
@@ -32,17 +32,14 @@ View(df2_tool_2nd)
 
 df2_paper_2nd <-  df2[df2$Treatment=="paper_2nd",]
 View(df2_paper_2nd)
-wilcox.test(df2_tool_2nd$Score_1,df2_paper_2nd$Score_1,paired=FALSE,alternative = "two.sided") #W = 95, p-value = 0.07275
-wilcox.test(df2_tool_2nd$Score_1,df2_paper_2nd$Score_1,paired=FALSE,alternative = "less") #W = 95, p-value = 0.9684
-wilcox.test(df2_tool_2nd$Score_1,df2_paper_2nd$Score_1,paired=FALSE,alternative = "greater") #W = 95, p-value = 0.03637*********
 
-wilcox.test(df2_tool_2nd$Score_2,df2_paper_2nd$Score_2,paired=FALSE,alternative = "two.sided") #W = 2, p-value = 0.8
-wilcox.test(df2_tool_2nd$Score_2,df2_paper_2nd$Score_2,paired=FALSE,alternative = "less") #W = 2, p-value = 0.4
-wilcox.test(df2_tool_2nd$Score_2,df2_paper_2nd$Score_2,paired=FALSE,alternative = "greater") #W = 2, p-value = 0.8
+wilcox.test(df2_tool_2nd$Score_1,df2_paper_2nd$Score_1,paired=FALSE,alternative = "two.sided") #W = 90, p-value = 0.139
+wilcox.test(df2_tool_2nd$Score_1,df2_paper_2nd$Score_1,paired=FALSE,alternative = "less") #W = 90, p-value = 0.9385
+wilcox.test(df2_tool_2nd$Score_1,df2_paper_2nd$Score_1,paired=FALSE,alternative = "greater") #W = 90, p-value = 0.06949
 
-wilcox.test(df2_tool_2nd$Question_1,df2_paper_2nd$Question_1,paired=FALSE,alternative = "two.sided") #W = 42, p-value = 0.128
-wilcox.test(df2_tool_2nd$Question_2,df2_paper_2nd$Question_2,paired=FALSE,alternative = "two.sided") #W = 64, p-value = 0.9224
-wilcox.test(df2_tool_2nd$Question_3,df2_paper_2nd$Question_3,paired=FALSE,alternative = "two.sided") #W = 76, p-value = 0.5565
-wilcox.test(df2_tool_2nd$Question_4,df2_paper_2nd$Question_4,paired=FALSE,alternative = "two.sided") #W = 48.5, p-value = 0.425
+wilcox.test(df2_tool_2nd$Question_1,df2_paper_2nd$Question_1,paired=FALSE,alternative = "two.sided") #W = 63, p-value = 0.1667
+wilcox.test(df2_tool_2nd$Question_2,df2_paper_2nd$Question_2,paired=FALSE,alternative = "two.sided") #W = 83, p-value = 0.7046
+wilcox.test(df2_tool_2nd$Question_3,df2_paper_2nd$Question_3,paired=FALSE,alternative = "two.sided") #W = 85, p-value = 0.7217
+wilcox.test(df2_tool_2nd$Question_4,df2_paper_2nd$Question_4,paired=FALSE,alternative = "two.sided") #W = 69.5, p-value = 0.4342
 
 
