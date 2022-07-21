@@ -11,11 +11,11 @@ cleanup_task1 <- function(){
   df1$Score_1 <- (df1$Score_1/24 ) *100
   df1$Score_2 <- (df1$Score_2/24 ) *100
   
-  #Remove rows that have score either zero or NA
-  df1 <- df1[!(is.na(df1$Score_1) & is.na(df1$Score_2)), ]
-  
   #Replace all zeros for NA, so it does not distort the hypotheses tests
   df1[, 4:9][df1[, 4:9] == 0] <- NA 
+  
+  #Remove rows that have score for Score
+  #df1 <- df1[!(is.na(df1$Score_1) | is.na(df1$Score_2)), ]
   
   return(df1)
 }
@@ -31,11 +31,16 @@ cleanup_task2 <- function(){
   df2$Score_1 <- (df2$Score_1/18 ) *100
   df2$Score_2 <- (df2$Score_2/18 ) *100
   
+  #Replace zeros with NA
+  df2[, 4:10][df2[, 4:10] == 0] <- NA 
+  
   #Remove rows that have score either zero or NA
-  df2 <- df2[!( (is.na(df2$Score_1) | df2$Score_1==0) & (is.na(df2$Score_2) | df2$Score_2==0) ), ]
+  #df2 <- df2[!is.na(df2$Score_1), ]
+  
+  #Discarded Score-2 because it is not comparable with Task-1 (so not valid for within-group comparisons) and has too few data points for a between group comparsion
+  df2 = subset(df2, select = -c(Score_2) )
   
   #Replace all zeros for NA, so it does not distort the hypotheses tests
-  df2[, 4:10][df2[, 4:10] == 0] <- NA 
   return(df2)
 }
 
