@@ -2,7 +2,7 @@
 
 source("C://Users//Christian//Documents//GitHub//HT_WithinBetweenGroups//hypotheses_test//cleanup.r")
 
-df2 <- cleanup_df2()
+df2 <- cleanup_task2()
 
 chisq.test(df2$Team,df2$Question_6)
 # Pearson's Chi-squared test
